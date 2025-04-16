@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 
 export default function Login() {
-  const [formData, setFormData] = useState({
+  const [formData, setformData] = useState({
     username: "",
     password: "",
   });
@@ -35,7 +35,7 @@ export default function Login() {
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
+    setformData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
@@ -67,28 +67,28 @@ export default function Login() {
             REGISTER
           </Link>
         </div>
-        <div className="w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center">
+        <div className="w-full lg:w-auto flex gap-0 lg:gap-40 flex-col lg:flex-row items-center justify-center">
           <div className="h-full w-full lg:w-2/3 flex flex-col items-center justify-center">
-            <div className="w-full md:max-w-lg 2xl:max-w-3xl flex flex-col items-center justify-center gap-5 md:gap-y-10 2xl:mt-20">
-              <p className="flex flex-col gap-0 md:gap-4 text-4xl md:text-6xl 2xl:text-7xl font-extrabold text-center text-black dark:text-white">
+            <div className="w-full lg:max-w-lg 2xl:max-w-3xl flex flex-col items-center justify-center gap-5 lg:gap-y-10 2xl:mt-20">
+              <p className="flex flex-col gap-0 lg:gap-4 text-4xl lg:text-6xl 2xl:text-7xl font-extrabold text-center text-black dark:text-white">
                 <span>Smart Study Space</span>
               </p>
-              <span className="flex gap-1 py-1 px-3 text-lg md:text-2xl text-gray-600 dark:text-gray-300">
+              <span className="flex gap-1 py-1 px-3 text-lg lg:text-2xl text-gray-600 dark:text-gray-300">
                 Welcome Back - Please login to your account to continue
               </span>
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-4 md:p-1 flex flex-col justify-center items-center">
+          <div className="w-full lg:w-1/3 p-4 lg:p-1 flex flex-col justify-center items-center">
             <form
               onSubmit={onSubmit}
-              className="w-full md:w-[400px] flex flex-col gap-y-4 px-10 pt-14 pb-14"
+              className="w-full lg:w-[400px] flex flex-col gap-y-4 px-10 pt-14 pb-14"
             >
               <div className="">
                 <img
                   src={logo}
                   alt="BK TPHCM Logo"
-                  className="justify-self-center w-24 h-24 mb-4"
+                  className="justify-self-center text-center items-center justify-center w-24 h-24 mb-4"
                 />
                 <p className="font-bold text-2xl text-black dark:text-white text-center">Login</p>
               </div>
