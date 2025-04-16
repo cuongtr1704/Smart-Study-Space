@@ -37,7 +37,7 @@ export default function Seats() {
   return (
     <section className="content">
       {seatBookings.length > 0 ? (
-        <div className="flex flex-wrap gap-6 justify-start">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {seatBookings.map((book) => (
             <Item key={book._id} booking={book} />
           ))}
