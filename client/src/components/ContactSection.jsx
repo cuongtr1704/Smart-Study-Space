@@ -4,7 +4,7 @@ function ContactSection() {
   return (
     <section className="pt-[100px] bg-white">
       <div
-        className="relative w-full h-[60vh] flex items-center justify-center bg-cover bg-center"
+        className="relative w-full h-fit py-4 flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${footer})` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50 z-0" />
