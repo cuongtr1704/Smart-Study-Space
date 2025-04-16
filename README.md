@@ -34,3 +34,6 @@ A full-stack room and seat booking application with real-time availability check
 - JWT Authentication
 
 ---
+
+## Web deploy
+https://smart-study-space.netlify.app
