@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cancelBooking } from "../features/users/userSlice";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import QRCode from "react-qr-code";
 
 const timeMap = {
   1: "08:00 - 09:00",
@@ -21,10 +22,11 @@ const formatTime = (shift) => timeMap[shift] || "Invalid time";
 function Item({ booking }) {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showQR, setShowQR] = useState(false);
 
-  const handleCancelClick = () => {
-    setShowConfirm(true);
-  };
+  const handleCancelClick = () => setShowConfirm(true);
+  const closeModal = () => setShowConfirm(false);
+  const closeQRModal = () => setShowQR(false);
 
   const confirmCancel = async () => {
     try {
@@ -36,9 +38,9 @@ function Item({ booking }) {
     setShowConfirm(false);
   };
 
-  const closeModal = () => {
-    setShowConfirm(false);
-  };
+  const isInactive = ["over", "canceled", "checked"].includes(booking.status);
+  const formattedDate = new Date(booking.booked_date).toLocaleDateString();
+  const bookingTime = formatTime(booking.time);
 
   return (
     <>
@@ -73,68 +75,87 @@ function Item({ booking }) {
         </div>
       )}
 
-      {booking.status === "incoming" && (
-        <div className="bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-lg transition duration-200 overflow-hidden cursor-pointer w-[300px]">
-          <div className="p-4">
-            <h2 className="text-lg font-bold text-gray-800 dark:text-white">
+      {showQR && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onKeyDown={(e) => e.key === "Escape" && closeQRModal()}
+          tabIndex={-1}
+        >
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-sm text-center mx-4">
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+              Booking QR Code
+            </h3>
+            <QRCode
+              value={JSON.stringify({
+                id: booking._id,
+                room: booking.room,
+                seat: booking.seat,
+                date: formattedDate,
+                time: bookingTime,
+              })}
+              size={180}
+              className="mx-auto mb-4"
+            />
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               {booking.room}
-            </h2>
-            <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-1">
-              {new Date(booking.booked_date).toLocaleDateString()}
-            </h2>
-            <div className="flex items-center justify-between mb-2">
-              <div>
-                {booking.seat && <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <span className="font-medium">Seat:</span> {booking.seat}
-                </p>}
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <span className="font-medium">Time:</span>{" "}
-                  {formatTime(booking.time)}
-                </p>
-              </div>
-              <div className="mt-4">
-                <button
-                  onClick={handleCancelClick}
-                  className="bg-red-500 text-white text-sm px-2 py-1 rounded hover:bg-red-600 transition duration-200"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
+              {booking.type === "seat" ? ` - Seat: ${booking.seat}` : ""}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {formattedDate} | {bookingTime}
+            </p>
+            <button
+              onClick={closeQRModal}
+              className="mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white px-4 py-2 rounded"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
 
-      {(booking.status === "over" || booking.status === "canceled" || booking.status === "checked") && (
-        <div className="bg-gray-200 dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition duration-200 overflow-hidden cursor-pointer w-[300px]">
-          <div className="p-4">
-            <h2 className="text-lg font-bold text-gray-800 dark:text-white">
-              {booking.room}
-            </h2>
-            <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-1">
-              {new Date(booking.booked_date).toLocaleDateString()}
-            </h2>
-            <div className="flex items-center justify-between mb-2">
-              <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                  <span className="font-medium">Seat:</span> {booking.seat}
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <span className="font-medium">Time:</span>{" "}
-                  {formatTime(booking.time)}
-                </p>
-              </div>
-              <div className="mt-4">
+      <div
+        className={`rounded-lg shadow hover:shadow-lg transition duration-200 overflow-hidden w-full ${
+          isInactive ? "bg-gray-200 dark:bg-gray-800" : "bg-white dark:bg-gray-700"
+        }`}
+      >
+        <div className="p-4">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-1">{booking.room}</h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+            <span className="font-medium">Date:</span> {formattedDate}
+          </p>
+          {booking.seat && (
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <span className="font-medium">Seat:</span> {booking.seat}
+            </p>
+          )}
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+            <span className="font-medium">Time:</span> {bookingTime}
+          </p>
+
+          <div className="flex justify-between items-center">
+            {isInactive ? (
+              <span className="bg-gray-400 dark:bg-gray-600 text-white text-sm px-3 py-1 rounded">
+                {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+              </span>
+            ) : (
+              <>
                 <button
-                  className="bg-gray-400 dark:bg-gray-600 text-white text-sm px-2 py-1 rounded cursor-not-allowed"
+                  onClick={handleCancelClick}
+                  className="bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded"
                 >
-                  {booking.status === "over" ? "Over" : booking.status === "canceled" ? "Canceled" : "Checked"}
+                  Cancel
                 </button>
-              </div>
-            </div>
+                <button
+                  onClick={() => setShowQR(true)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1 rounded"
+                >
+                  QR Code
+                </button>
+              </>
+            )}
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
