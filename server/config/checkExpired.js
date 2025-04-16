@@ -1,7 +1,7 @@
 const cron = require('node-cron');
 const { checkAndUpdateExpiredBookings } = require('../services/bookings.service.js');
 
-const scheduleChecking = () => {cron.schedule('*/1 * * * *', async () => {
+const scheduleChecking = () => {cron.schedule('*/15 * * * *', async () => {
     console.log('Checking for expired bookings...');
     try {
       await checkAndUpdateExpiredBookings(
