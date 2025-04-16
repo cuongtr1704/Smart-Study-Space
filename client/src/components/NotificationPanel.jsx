@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { LuBell } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation } from "react-router-dom";
 import {
   getNotifications,
   viewAllNotifications,
@@ -16,6 +16,7 @@ import Spinner from "./Spinner";
 function NotificationPanel() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useSelector((state) => state.user);
   const { notifications, isLoading, isError, message } = useSelector(
     (state) => state.user
@@ -36,7 +37,7 @@ function NotificationPanel() {
     return () => {
       dispatch(reset());
     };
-  }, [isError, message, dispatch]);
+  }, [location.pathname, isError, message, dispatch]);
 
   const [open, setOpen] = useState(false);
   const handleDelete = (id) => {
