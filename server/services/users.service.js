@@ -122,6 +122,7 @@ async function createUserBooking(bookingData, user) {
       room: bookingData.room,
       booked_date: bookingData.booked_date,
       time: bookingData.time,
+      status: "incoming",
     });
 
     if (existingRoom) {
@@ -141,6 +142,7 @@ async function createUserBooking(bookingData, user) {
       booked_date: bookingData.booked_date,
       seat: bookingData.seat,
       time: bookingData.time,
+      status: "incoming",
     });
 
     if (existingSeat) {
