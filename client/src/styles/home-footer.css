@@ -1,0 +1,40 @@
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    background-color: #090b40;
+    color: white;
+  }
+  
+  .detail p {
+    font-size: 18px;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .detail h2 {
+    font-size: 18px;
+    font-weight: medium;
+    margin-bottom: 20px;
+  }
+  
+  .detail {
+    width: 430px;
+    text-align: left;
+  }
+  
+  .cpr {
+    background-color: #060826;
+    color: white;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    height: 140px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 310px;
+  }

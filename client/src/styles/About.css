@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.about-content {
+  max-width: 1309px;
+  position: absolute;
+  z-index: 10;
+  top: 40%;
+  left: 35%;
+  transform: translate(-25%, -40%);
+  text-align: center;
+}
+
+.about-content h1 {
+  font-size: 90px;
+  font-weight: bold;
+  margin-bottom: 0;
+  max-width: 1309px;
+}
+
+.about-title {
+  font-family: "Funnel Sans", sans-serif;
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background: url("../images/about.jpg") no-repeat center center/cover;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.about-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.About {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  padding: 50px 20px;
+  font-family: "Funnel Sans", sans-serif;
+}
+
+.block_1,
+.block_2,
+.block_3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 63px;
+  margin: auto;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.block_1 img,
+.block_2 img,
+.block_3 img {
+  width: 526px;
+  height: 260px;
+  border-radius: 10px;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 45px;
+  font-weight: semi-bold;
+  margin-bottom: 10px;
+}
+
+.about-text p {
+  font-size: 22px;
+  margin-top: 5px;
+}
+
+.about-text ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.about-text ul {
+  margin-top: 5px;
+}
+
+.about-text ul li,
+.about-text ol li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 22px;
+}
+
+.quote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 50px;
+  max-width: 1697px;
+}
+
+.quote h2 {
+  font-size: 40px;
+  font-weight: semi-bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
