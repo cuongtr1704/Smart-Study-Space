@@ -18,9 +18,10 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
-  credentials: true
-}));
+  origin: 'https://smart-study-space.netlify.app',
+  credentials: true,
+}))
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(routers);
