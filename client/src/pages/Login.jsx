@@ -67,7 +67,7 @@ export default function Login() {
             REGISTER
           </Link>
         </div>
-        <div className="w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center">
+        <div className="w-full lg:w-auto flex gap-0 lg:gap-40 flex-col lg:flex-row items-center justify-center">
           <div className="w-full flex flex-col items-center justify-center px-4 py-10 lg:w-2/3">
             <div className="w-full max-w-fit flex flex-col items-center justify-center gap-5 lg:gap-y-10 2xl:mt-20">
               <p className="text-4xl lg:text-6xl 2xl:text-7xl font-extrabold text-center text-black dark:text-white">
@@ -79,7 +79,7 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-4 md:p-1 flex flex-col justify-center items-center">
+          <div className="w-full lg:w-1/3 p-4 lg:p-1 flex flex-col justify-center items-center">
             <form
               onSubmit={onSubmit}
               className="w-full max-w-sm lg:w-[400px] flex flex-col gap-y-4 px-6 sm:px-10 pt-14 pb-14"
