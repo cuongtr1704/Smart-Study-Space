@@ -1,20 +1,20 @@
 # Booking System
 
-A full-stack room and seat booking application with real-time availability checking, built using **React**, **Redux**, and **Express.js**.
+A full-stack room and seat booking system with real-time availability checking, built with **React**, **Redux**, **Express.js**, and **MongoDB**.
+
+> ✅ Live Demo: [https://smart-study-space.netlify.app](https://smart-study-space.netlify.app)
 
 ---
 
 ## Features
 
-- **Authentication** (login/logout)
-- **Room Type Selection** (Conference, Projector, Lab, Meeting)
-- **Room Selection** with capacity display
-- **Seat Selection** with capacity display
-- **Date Picker** with future-date restriction
-- **Time Slot Picker** with dynamic availability
-- **Redux-based State Management**
-- **Backend APIs** built with Express & MongoDB
-- **Error Toasts** and Feedback for UX
+- User Authentication (Login/Logout)
+- Room Type Selection (Conference, Projector, Lab, Meeting)
+- Real-time Room and Seat Selection with Capacity Display
+- Date and Time Slot Picker (Future Dates Only)
+- State Management with Redux Toolkit
+- RESTful APIs (Express + MongoDB)
+- Error Handling with Toast Notifications
 
 ---
 
@@ -23,17 +23,45 @@ A full-stack room and seat booking application with real-time availability check
 ### Frontend
 - React
 - Redux Toolkit
-- React Router
+- React Router DOM
 - Tailwind CSS
 - Headless UI
 - React Toastify
 
 ### Backend
-- Express.js
-- MongoDB / Mongoose
-- JWT Authentication
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JSON Web Tokens (JWT)
 
 ---
 
-## Web deploy
-https://smart-study-space.netlify.app
+## Local Setup
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [MongoDB](https://www.mongodb.com/) (local installation or MongoDB Atlas)
+
+---
+
+## Installation Steps
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/cuongtr1704/Smart-Study-Space.git
+cd Smart-Study-Space
+```
+
+2. **Install frontend dependencies**
+
+```bash
+cd client
+npm install
+```
+
+3. **Install backend dependencies**
+
+```bash
+cd ../server
+npm install
+```
